@@ -26,7 +26,12 @@ class Sample1
         pb.Left = lb.Right;
         pb.Parent = fm;
         
-    
+        Button btn = new Button();
+        btn.Text = "押すな！";
+        btn.Top = fm.Height - 90; btn.Left = fm.Width - 120;
+        btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+        btn.Parent = fm;
+
 
         Application.Run(fm);
     }
