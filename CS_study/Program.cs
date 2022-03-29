@@ -7,12 +7,13 @@ using System.Drawing;
 
 class HelloWorld : Form
 {
-    private Label lb;
+    private Label lb, lb2;
     private Button bt;
     private PictureBox pb;
     private Image img;
     private Bitmap imgbmp;
     private int s;
+    private ListBox lbx;
 
     public static void Main()
     {
@@ -22,6 +23,7 @@ class HelloWorld : Form
 
     public HelloWorld()
     {
+        string[] str = { "C","C++","C#","GO","Swift", "PHP", "Java", "Ruby", "SQL", "Python", "HTML" };
         this.Text = "Hello World";
         this.DoubleBuffered = true;
 
@@ -49,9 +51,22 @@ class HelloWorld : Form
         bt.Top = this.Height - 90; bt.Left = this.Width - 120;
         bt.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
 
+        lb2 = new Label();
+        lb2.Text = "好きなプログラミング言語は？";
+        lb2.Top = lb.Bottom + 10;
+
+        lbx = new ListBox();
+        for (int i = 0; i < str.Length; i++)
+        {
+            lbx.Items.Add(str[i]);
+        }
+        lbx.Top = lb2.Bottom;
+
         lb.Parent = this;           //ラベルをフォームにのせる
         pb.Parent = this;
         bt.Parent = this;
+        lbx.Parent = this;
+        lb2.Parent = this;
 
         this.Paint += new PaintEventHandler(fm_Paint);
         tm.Tick += new EventHandler(tm_Tick);
@@ -76,16 +91,16 @@ class HelloWorld : Form
         int w = 100;
         int h = 100;
 
-        g.FillEllipse(new SolidBrush(Color.DeepPink), 70, 70, w, h);
-        g.FillPie(new SolidBrush(Color.DarkOrchid), 70, 70, w, h, -90, (float)0.6 * s);
-        g.FillEllipse(new SolidBrush(Color.Bisque), 95, 95, (int)w / 2, (int)h / 2);
+        g.FillEllipse(new SolidBrush(Color.DeepPink), 100, 70, w, h);
+        g.FillPie(new SolidBrush(Color.DarkOrchid), 100, 70, w, h, -90, (float)0.6 * s);
+        g.FillEllipse(new SolidBrush(Color.Bisque), 125, 95, (int)w / 2, (int)h / 2);
 
         string time = s / 10 + ":" + s % 10;
 
         Font f = new Font("Courier", 15);
         SizeF ts = g.MeasureString(time, f);
 
-        g.DrawString(time, f, new SolidBrush(Color.Black), 100, 105);
+        g.DrawString(time, f, new SolidBrush(Color.Black), 130, 105);
     }
 
     public void tm_Tick(Object sender, EventArgs e)
