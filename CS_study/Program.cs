@@ -26,6 +26,8 @@ class HelloWorld : Form
         string[] str = { "C","C++","C#","GO","Swift", "PHP", "Java", "Ruby", "SQL", "Python", "HTML" };
         this.Text = "Hello World";
         this.DoubleBuffered = true;
+        this.BackgroundImageLayout = ImageLayout.Zoom;
+        this.BackgroundImage = System.Drawing.Image.FromFile(@"window.png");
 
         s = 0;
         Timer tm = new Timer();
